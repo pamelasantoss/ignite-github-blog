@@ -1,3 +1,5 @@
+import { CardIntro } from "../../components/CardIntro"
+
 export function Home() {
-  return <h1>Homepage</h1>
+  return <CardIntro />
 }

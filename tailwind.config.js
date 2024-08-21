@@ -23,7 +23,8 @@ export default {
         'base-input': '#040F1A'
       },
       backgroundImage: {
-        'header-pattern': "url('/src/assets/background.svg')"
+        'header-pattern': "url('/src/assets/background.svg')",
+        'header-pattern-blur': "url('/src/assets/background-blur.svg')"
       }
     },
   },
