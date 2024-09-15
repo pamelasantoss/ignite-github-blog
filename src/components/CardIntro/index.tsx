@@ -4,37 +4,18 @@ import {
   Building,
   Users
 } from "@phosphor-icons/react"
-import { githubAPI } from "../../lib/axios"
-import { useEffect, useState } from "react"
-
-interface UserInfo {
-  avatar_url: string
-  name: string
-  bio: string
-  login: string
-  company: string | null
-  followers: number
-}
+import { useGithubUserData } from "../../hooks/useGithubUserData"
 
 export function CardIntro() {
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null)
-
-  const fetchUserInfo = async () => {
-    const user = import.meta.env.VITE_GITHUB_USER
-    const response = await githubAPI.get(`/users/${user}`)
-    setUserInfo(response.data)
-  }
+  const { userData } = useGithubUserData()
 
   const goToGithubPage = () => {
-    console.log("Go to: ", `https://github.com/${userInfo?.login}`)
+    // TODO: Redirect user to its github page
+    console.log("Go to: ", `https://github.com/${userData?.login}`)
   }
 
-  useEffect(() => {
-    fetchUserInfo()
-  }, [])
-
-  const showUserImage = userInfo?.avatar_url
-    ? userInfo?.avatar_url
+  const showUserImage = userData?.avatar_url
+    ? userData?.avatar_url
     : "https://placehold.co/148x148"
 
   return (
@@ -59,32 +40,32 @@ export function CardIntro() {
 
       <div className="flex-1">
         <h1 className="font-nunito text-base-title text-2xl font-semibold">
-          {userInfo?.name}
+          {userData?.name}
         </h1>
-        {userInfo?.bio && (
-          <p className="font-nunito text-base-text my-2">{userInfo?.bio}</p>
+        {userData?.bio && (
+          <p className="font-nunito text-base-text my-2">{userData?.bio}</p>
         )}
         <ul className="flex flex-col md:flex-row gap-1 md:gap-7 pt-3">
           <li>
             <a
-              href={`https://github.com/${userInfo?.login}`}
+              href={`https://github.com/${userData?.login}`}
               target="_blank"
-              title={userInfo?.login}
+              title={userData?.login}
               className="font-nunito text-base-subtitle flex items-center gap-2 hover:underline"
             >
               <GithubLogo size={18} weight="fill" className="text-base-label" />
-              {userInfo?.login}
+              {userData?.login}
             </a>
           </li>
-          {userInfo?.company && (
+          {userData?.company && (
             <li className="font-nunito text-base-subtitle flex items-center gap-2">
               <Building size={18} weight="fill" className="text-base-label" />
-              {userInfo?.company}
+              {userData?.company}
             </li>
           )}
           <li className="font-nunito text-base-subtitle flex items-center gap-2">
             <Users size={18} weight="fill" className="text-base-label" />
-            {userInfo?.followers} seguidores
+            {userData?.followers} seguidores
           </li>
         </ul>
       </div>

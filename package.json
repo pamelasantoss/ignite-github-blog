@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "format": "npx prettier --w 'src' && git add -A .",
+    "format": "npx prettier --w \"./src\" && git add -A .",
     "preview": "vite preview",
     "prepare": "husky"
   },

@@ -1,8 +1,15 @@
 import { CardIntro } from "../../components/CardIntro"
 import { CardIssue } from "../../components/CardIssue"
 import { SearchForm } from "../../components/SearchForm"
+import { useGithubIssuesData } from "../../hooks/useGithubIssuesData"
 
 export function Home() {
+  const { issues } = useGithubIssuesData()
+  const issuesQuantity =
+    issues.length > 1
+      ? `${issues.length} publicações`
+      : `${issues.length} publicação`
+
   return (
     <>
       <CardIntro />
@@ -13,19 +20,22 @@ export function Home() {
             Publicações
           </h2>
           <span className="font-nunito text-base-span text-sm">
-            6 publicações
+            {issuesQuantity}
           </span>
         </div>
         <SearchForm />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8">
-        <CardIssue />
-        <CardIssue />
-        <CardIssue />
-        <CardIssue />
-        <CardIssue />
-        <CardIssue />
+        {issues.map(issue => (
+          <CardIssue
+            key={issue.id}
+            id={issue.id}
+            title={issue.title}
+            body={issue.body}
+            date={issue.created_at}
+          />
+        ))}
       </div>
     </>
   )
