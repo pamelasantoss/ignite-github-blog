@@ -3,6 +3,7 @@ import { fetchRepoIssues } from "../../services/fetchRepoIssues"
 
 interface IssueData {
   id: number
+  number: number
   title: string
   created_at: string
   body: string

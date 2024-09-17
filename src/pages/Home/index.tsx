@@ -30,7 +30,7 @@ export function Home() {
         {issues.map(issue => (
           <CardIssue
             key={issue.id}
-            id={issue.id}
+            id={issue.number}
             title={issue.title}
             body={issue.body}
             date={issue.created_at}
