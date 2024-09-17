@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from "date-fns"
+import { ptBR } from "date-fns/locale"
 import { Link } from "react-router-dom"
 
 interface CardIssueProps {
@@ -8,7 +10,10 @@ interface CardIssueProps {
 }
 
 export function CardIssue({ id, title, body, date }: CardIssueProps) {
-  console.log("Data: ", date)
+  const publishedDateFormatted = formatDistanceToNow(date, {
+    locale: ptBR,
+    addSuffix: true
+  })
 
   return (
     <Link to={`/article/${id}`}>
@@ -17,7 +22,9 @@ export function CardIssue({ id, title, body, date }: CardIssueProps) {
           <h3 className="font-nunito text-base-title text-xl font-semibold flex-1 pr-6">
             {title}
           </h3>
-          <span className="font-nunito text-base-span text-sm">Há 1 dia</span>
+          <span className="font-nunito text-base-span text-sm">
+            {publishedDateFormatted}
+          </span>
         </div>
         <p className="font-nunito text-base-text mt-4 text-ellipsis overflow-hidden max-h-[100px]">
           {body}

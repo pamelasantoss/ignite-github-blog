@@ -5,6 +5,9 @@ import {
   ChatCircle,
   CalendarBlank
 } from "@phosphor-icons/react"
+import { formatDistanceToNow } from "date-fns"
+import { ptBR } from "date-fns/locale"
+import { useNavigate } from "react-router-dom"
 
 interface CardIntroIssueProps {
   title: string
@@ -24,10 +27,21 @@ export function CardIntroIssue({
   created_at,
   comments
 }: CardIntroIssueProps) {
+  const navigate = useNavigate()
+
+  const goBackToHomePage = () => {
+    navigate("/")
+  }
+
   const goToIssueGithubPage = () => {
     // TODO: Redirect user to issue github page
     console.log("Go to: ", issueLink)
   }
+
+  const publishedDateFormatted = formatDistanceToNow(created_at, {
+    locale: ptBR,
+    addSuffix: true
+  })
 
   const commentsText =
     comments > 1 ? `${comments} comentários` : `${comments} comentário`
@@ -35,7 +49,10 @@ export function CardIntroIssue({
   return (
     <div className="bg-base-profile rounded-xl drop-shadow-md -mt-20 flex flex-col gap-4 p-6">
       <div className="flex justify-between items-center">
-        <button className="font-nunito text-primary-blue text-xs font-semibold uppercase flex items-center gap-1 pb-1 border-b border-transparent hover:border-primary-blue">
+        <button
+          onClick={goBackToHomePage}
+          className="font-nunito text-primary-blue text-xs font-semibold uppercase flex items-center gap-1 pb-1 border-b border-transparent hover:border-primary-blue"
+        >
           <ArrowLeft size={20} />
           Voltar
         </button>
@@ -65,7 +82,7 @@ export function CardIntroIssue({
         </li>
         <li className="font-nunito text-base-span flex items-center gap-2">
           <CalendarBlank size={18} weight="fill" className="text-base-label" />
-          Há 1 dia - {created_at}
+          {publishedDateFormatted}
         </li>
         <li className="font-nunito text-base-span flex items-center gap-2">
           <ChatCircle size={18} weight="fill" className="text-base-label" />
