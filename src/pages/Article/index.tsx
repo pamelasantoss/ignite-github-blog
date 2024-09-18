@@ -45,9 +45,9 @@ export function Article() {
       />
 
       <div className="flex flex-col p-8">
-        <p className="font-nunito text-base-text">
+        <div className="font-nunito text-base-text">
           <Markdown>{markdownText}</Markdown>
-        </p>
+        </div>
       </div>
     </>
   )

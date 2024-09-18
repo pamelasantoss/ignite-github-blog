@@ -1,5 +1,11 @@
-import { createContext, ReactNode, useEffect, useState } from "react"
-import { fetchRepoIssues } from "../../services/fetchRepoIssues"
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState
+} from "react"
+import { githubAPI } from "../../lib/axios"
 
 interface Issue {
   id: number
@@ -11,6 +17,7 @@ interface Issue {
 
 interface IssuesContextType {
   issues: Issue[]
+  searchIssues: (query?: string) => Promise<void>
 }
 
 interface IssuesProviderProps {
@@ -22,20 +29,28 @@ export const IssuesContext = createContext({} as IssuesContextType)
 export function IssuesProvider({ children }: IssuesProviderProps) {
   const [issues, setIssues] = useState<Issue[]>([])
 
-  const getAllIssues = async () => {
-    const fetchIssues = await fetchRepoIssues()
-    if (!fetchIssues) {
-      return
-    }
-    setIssues(fetchIssues)
+  const fetchRepoIssues = async () => {
+    const repoPath = import.meta.env.VITE_GITHUB_REPO_ISSUES
+    const response = await githubAPI.get(`/repos/${repoPath}/issues`)
+
+    setIssues(response.data)
   }
 
+  const searchIssues = useCallback(async (query?: string) => {
+    const repoPath = import.meta.env.VITE_GITHUB_REPO_ISSUES
+    const response = await githubAPI.get(
+      `/search/issues?q=${query}%20repo:${repoPath}`
+    )
+
+    setIssues(response.data.items)
+  }, [])
+
   useEffect(() => {
-    getAllIssues()
+    fetchRepoIssues()
   }, [])
 
   return (
-    <IssuesContext.Provider value={{ issues }}>
+    <IssuesContext.Provider value={{ issues, searchIssues }}>
       {children}
     </IssuesContext.Provider>
   )
