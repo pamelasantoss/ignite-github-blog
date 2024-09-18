@@ -1,10 +1,11 @@
+import { useContext } from "react"
 import { CardIntro } from "../../components/CardIntro"
 import { CardIssue } from "../../components/CardIssue"
 import { SearchForm } from "../../components/SearchForm"
-import { useGithubIssuesData } from "../../hooks/useGithubIssuesData"
+import { IssuesContext } from "../../contexts/IssuesContext"
 
 export function Home() {
-  const { issues } = useGithubIssuesData()
+  const { issues } = useContext(IssuesContext)
   const issuesQuantity =
     issues.length > 1
       ? `${issues.length} publicações`
