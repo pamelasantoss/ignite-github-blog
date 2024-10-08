@@ -33,11 +33,6 @@ export function CardIntroIssue({
     navigate("/")
   }
 
-  const goToIssueGithubPage = () => {
-    // TODO: Redirect user to issue github page
-    console.log("Go to: ", issueLink)
-  }
-
   const publishedDateFormatted = formatDistanceToNow(created_at, {
     locale: ptBR,
     addSuffix: true
@@ -56,13 +51,14 @@ export function CardIntroIssue({
           <ArrowLeft size={20} />
           Voltar
         </button>
-        <button
-          onClick={goToIssueGithubPage}
+        <a
+          href={issueLink}
+          target="_blank"
           className="font-nunito text-primary-blue text-xs font-semibold uppercase flex items-center gap-1 pb-1 border-b border-transparent hover:border-primary-blue"
         >
           Ver no Github
           <ArrowSquareUpRight size={20} />
-        </button>
+        </a>
       </div>
 
       <h1 className="font-nunito text-base-title text-2xl font-semibold">

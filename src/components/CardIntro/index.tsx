@@ -9,24 +9,20 @@ import { useGithubUserData } from "../../hooks/useGithubUserData"
 export function CardIntro() {
   const { userData } = useGithubUserData()
 
-  const goToGithubPage = () => {
-    // TODO: Redirect user to its github page
-    console.log("Go to: ", `https://github.com/${userData?.login}`)
-  }
-
   const showUserImage = userData?.avatar_url
     ? userData?.avatar_url
     : "https://placehold.co/148x148"
 
   return (
     <div className="bg-base-profile rounded-xl drop-shadow-md -mt-20 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 p-6 relative">
-      <button
-        onClick={goToGithubPage}
+      <a
+        href={`https://github.com/${userData?.login}`}
+        target="_blank"
         className="absolute top-6 right-6 font-nunito text-primary-blue text-xs font-semibold uppercase flex items-center gap-1 pb-1 border-b border-transparent hover:border-primary-blue"
       >
         Github
         <ArrowSquareUpRight size={20} />
-      </button>
+      </a>
 
       <div className="min-w-36">
         <img
