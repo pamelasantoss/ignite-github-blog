@@ -1,50 +1,38 @@
-# React + TypeScript + Vite
+# Github Blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![GitHub repo size](https://img.shields.io/github/repo-size/pamelasantoss/ignite-github-blog?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/pamelasantoss/ignite-github-blog?color=%23387fc6&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/pamelasantoss/ignite-github-blog?color=%23387fc6&style=for-the-badge)
 
-Currently, two official plugins are available:
+### :bulb: Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Simple Github Blog application built in TypeScript.
+This application was a part of a Rocketseat course for practice the HTTP requests and performance.
+In this application, you'll see a Github Blog where the articles is the issues from a public repository. All the information, from profile to issues, is controlled by envs.
 
-## Expanding the ESLint configuration
+### :rocket: Technologies
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [Vite](https://vitejs.dev/)
+- [ReactJS](https://react.dev/learn)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind](https://tailwindcss.com/)
+- [Context API](https://legacy.reactjs.org/docs/context.html)
+- [React Hook Form](https://react-hook-form.com/)
+- [Zod](https://zod.dev/)
+- [React Markdown](https://github.com/remarkjs/react-markdown)
 
-- Configure the top-level `parserOptions` property like this:
+### :heavy_check_mark: Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- You need to have `node` on your setup from version 19
+- Clone this repository and then run `npm run install` to install the project dependencies
+- Rename `.env.default` to `.env` and fill with your Github information
+- `npm run dev` to see the project running on `:5173` localhost port
+- `npm run build` and then `npm run preview` to run the production version
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### :memo: License
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+This project is under the MIT license. See the [LICENSE](https://github.com/pamelasantoss/ignite-github-blog/blob/main/LICENSE) for more information.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+
+Made with ❤️ by Pamela Santos :point_right: [Get in touch!](https://pamelasantos.dev.br/)
