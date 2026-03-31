@@ -1,8 +1,8 @@
 import {
-  ArrowSquareUpRight,
-  GithubLogo,
-  Building,
-  Users
+  ArrowSquareUpRightIcon,
+  GithubLogoIcon,
+  BuildingIcon,
+  UsersIcon
 } from "@phosphor-icons/react"
 import { useGithubUserData } from "../../hooks/useGithubUserData"
 
@@ -21,7 +21,7 @@ export function CardIntro() {
         className="absolute top-6 right-6 font-nunito text-primary-blue text-xs font-semibold uppercase flex items-center gap-1 pb-1 border-b border-transparent hover:border-primary-blue"
       >
         Github
-        <ArrowSquareUpRight size={20} />
+        <ArrowSquareUpRightIcon size={20} />
       </a>
 
       <div className="min-w-36">
@@ -49,18 +49,26 @@ export function CardIntro() {
               title={userData?.login}
               className="font-nunito text-base-subtitle flex items-center gap-2 hover:underline"
             >
-              <GithubLogo size={18} weight="fill" className="text-base-label" />
+              <GithubLogoIcon
+                size={18}
+                weight="fill"
+                className="text-base-label"
+              />
               {userData?.login}
             </a>
           </li>
           {userData?.company && (
             <li className="font-nunito text-base-subtitle flex items-center gap-2">
-              <Building size={18} weight="fill" className="text-base-label" />
+              <BuildingIcon
+                size={18}
+                weight="fill"
+                className="text-base-label"
+              />
               {userData?.company}
             </li>
           )}
           <li className="font-nunito text-base-subtitle flex items-center gap-2">
-            <Users size={18} weight="fill" className="text-base-label" />
+            <UsersIcon size={18} weight="fill" className="text-base-label" />
             {userData?.followers} seguidores
           </li>
         </ul>

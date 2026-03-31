@@ -1,9 +1,9 @@
 import {
-  ArrowSquareUpRight,
-  GithubLogo,
-  ArrowLeft,
-  ChatCircle,
-  CalendarBlank
+  ArrowLeftIcon,
+  ArrowSquareUpRightIcon,
+  GithubLogoIcon,
+  CalendarBlankIcon,
+  ChatCircleIcon
 } from "@phosphor-icons/react"
 import { formatDistanceToNow } from "date-fns"
 import { ptBR } from "date-fns/locale"
@@ -12,10 +12,7 @@ import { useNavigate } from "react-router-dom"
 interface CardIntroIssueProps {
   title: string
   issueLink: string
-  user: {
-    login: string
-    html_url: string
-  }
+  user: { login: string; html_url: string }
   created_at: string
   comments: number
 }
@@ -48,7 +45,7 @@ export function CardIntroIssue({
           onClick={goBackToHomePage}
           className="font-nunito text-primary-blue text-xs font-semibold uppercase flex items-center gap-1 pb-1 border-b border-transparent hover:border-primary-blue"
         >
-          <ArrowLeft size={20} />
+          <ArrowLeftIcon size={20} />
           Voltar
         </button>
         <a
@@ -57,7 +54,7 @@ export function CardIntroIssue({
           className="font-nunito text-primary-blue text-xs font-semibold uppercase flex items-center gap-1 pb-1 border-b border-transparent hover:border-primary-blue"
         >
           Ver no Github
-          <ArrowSquareUpRight size={20} />
+          <ArrowSquareUpRightIcon size={20} />
         </a>
       </div>
 
@@ -72,16 +69,24 @@ export function CardIntroIssue({
             title={user?.login}
             className="font-nunito text-base-subtitle flex items-center gap-2 hover:underline"
           >
-            <GithubLogo size={18} weight="fill" className="text-base-label" />
+            <GithubLogoIcon
+              size={18}
+              weight="fill"
+              className="text-base-label"
+            />
             {user?.login}
           </a>
         </li>
         <li className="font-nunito text-base-span flex items-center gap-2">
-          <CalendarBlank size={18} weight="fill" className="text-base-label" />
+          <CalendarBlankIcon
+            size={18}
+            weight="fill"
+            className="text-base-label"
+          />
           {publishedDateFormatted}
         </li>
         <li className="font-nunito text-base-span flex items-center gap-2">
-          <ChatCircle size={18} weight="fill" className="text-base-label" />
+          <ChatCircleIcon size={18} weight="fill" className="text-base-label" />
           {commentsText}
         </li>
       </ul>
