@@ -1,5 +1,5 @@
-import Markdown from "react-markdown"
 import { CardIntroIssue } from "../../components/CardIntroIssue"
+import { ArticleContent } from "../../components/ArticleContent"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { githubAPI } from "../../lib/axios"
@@ -28,8 +28,6 @@ export function Article() {
       .then(response => setIssue(response.data))
   }, [repoPath, id])
 
-  const markdownText = issue?.body ? issue?.body : ""
-
   if (!issue) {
     return <p>Something went wrong :(</p>
   }
@@ -45,9 +43,7 @@ export function Article() {
       />
 
       <div className="flex flex-col p-8">
-        <div className="font-nunito text-base-text">
-          <Markdown>{markdownText}</Markdown>
-        </div>
+        <ArticleContent body={issue.body} />
       </div>
     </>
   )
